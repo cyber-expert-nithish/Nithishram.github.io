@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn cybersecurity, Linux administration, and shell scripting with practical tutorials, command references, and CPTS certification journey.">
+    <title>CyberSec & Linux Hub - Tutorials, Commands & Security Guides</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-tertiary: #1e2442;
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --border: #27293d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        /* AdSense Placeholder */
+        .ad-space {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 2rem auto;
+            border-radius: 8px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Command Reference */
+        .command-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .command-item {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .command-item h4 {
+            color: var(--success);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .command-item code {
+            display: block;
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* CPTS Journey */
+        .journey-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .journey-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .journey-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .journey-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .journey-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Active Section Highlighting */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">🛡️ CyberSec Hub</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#commands">Commands</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Master Cybersecurity & Linux</h1>
+        <p>Practical tutorials, command references, and real-world security guides for aspiring cybersecurity professionals</p>
+        <div class="search-box">
+            <input type="text" placeholder="Search commands, tutorials, topics...">
+        </div>
+    </section>
+
+    <!-- AdSense Top Banner -->
+    <div class="ad-space" style="max-width: 970px; height: 90px;">
+        Google AdSense Banner (970x90) - Insert your ad code here
+    </div>
+
+    <!-- Latest Tutorials -->
+    <section id="tutorials" class="container">
+        <h2 class="section-title">Latest Tutorials</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="card-tag">Linux</span>
+                <h3>Understanding Linux File Permissions</h3>
+                <p>A comprehensive guide to chmod, chown, and access control lists with practical examples from real-world scenarios.</p>
+                <div class="card-meta">
+                    <span>📅 Jan 5, 2026</span>
+                    <span>⏱️ 8 min read</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Security</span>
+                <h3>Setting Up fail2ban on Ubuntu</h3>
+                <p>Protect your server from brute force attacks with proper fail2ban configuration and custom rules.</p>
+                <div class="card-meta">
+                    <span>📅 Jan 3, 2026</span>
+                    <span>⏱️ 10 min read</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Scripting</span>
+                <h3>Bash Scripting Best Practices</h3>
+                <p>Learn error handling, logging, and security considerations when writing production-ready shell scripts.</p>
+                <div class="card-meta">
+                    <span>📅 Dec 30, 2025</span>
+                    <span>⏱️ 12 min read</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Pentesting</span>
+                <h3>Web Enumeration Methodology</h3>
+                <p>Step-by-step guide to discovering vulnerabilities in web applications using industry-standard tools.</p>
+                <div class="card-meta">
+                    <span>📅 Dec 28, 2025</span>
+                    <span>⏱️ 15 min read</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Linux</span>
+                <h3>Systemd Service Management</h3>
+                <p>Master systemctl commands and create custom services for your applications.</p>
+                <div class="card-meta">
+                    <span>📅 Dec 25, 2025</span>
+                    <span>⏱️ 7 min read</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag">Security</span>
+                <h3>SSH Hardening Guide</h3>
+                <p>Secure your SSH server with key-based authentication, port changes, and advanced configurations.</p>
+                <div class="card-meta">
+                    <span>📅 Dec 22, 2025</span>
+                    <span>⏱️ 9 min read</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- AdSense In-feed Ad -->
+        <div class="ad-space" style="max-width: 728px; height: 90px;">
+            Google AdSense (728x90) - Insert your ad code here
+        </div>
+    </section>
+
+    <!-- Command Reference -->
+    <section id="commands" class="container">
+        <h2 class="section-title">Complete Command Reference</h2>
+        
+        <div class="command-section">
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent);">🌐 Network Commands</h3>
+            
+            <div class="command-item">
+                <h4>netstat - Network Statistics</h4>
+                <p>Display active network connections and listening ports</p>
+                <code>netstat -tulpn</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-t: TCP, -u: UDP, -l: listening, -p: program, -n: numeric</p>
+            </div>
+
+            <div class="command-item">
+                <h4>nmap - Network Mapper</h4>
+                <p>Comprehensive port scanning and service detection</p>
+                <code>nmap -sV -sC -p- -oN scan.txt target.com</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-sV: version detection, -sC: default scripts, -p-: all ports, -oN: save output</p>
+            </div>
+
+            <div class="command-item">
+                <h4>ss - Socket Statistics</h4>
+                <p>Modern replacement for netstat with better performance</p>
+                <code>ss -tuln</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Faster and more detailed than netstat</p>
+            </div>
+
+            <div class="command-item">
+                <h4>ping - Network Connectivity Test</h4>
+                <p>Test network connectivity and measure latency</p>
+                <code>ping -c 4 target.com</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-c: count of packets to send</p>
+            </div>
+
+            <div class="command-item">
+                <h4>traceroute - Network Path Analysis</h4>
+                <p>Trace the route packets take to destination</p>
+                <code>traceroute target.com</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Shows all hops between you and target</p>
+            </div>
+
+            <div class="command-item">
+                <h4>curl - Transfer Data from URLs</h4>
+                <p>Fetch web pages and test APIs</p>
+                <code>curl -I https://example.com</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-I: fetch headers only, useful for checking responses</p>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent);">📁 File Operations</h3>
+            
+            <div class="command-item">
+                <h4>find - Search for Files</h4>
+                <p>Locate files with specific permissions or attributes</p>
+                <code>find / -perm -4000 -type f 2>/dev/null</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Finds SUID files - crucial for privilege escalation</p>
+            </div>
+
+            <div class="command-item">
+                <h4>grep - Pattern Matching</h4>
+                <p>Search file contents recursively</p>
+                <code>grep -ri "password" /var/log/ 2>/dev/null</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-r: recursive, -i: case insensitive</p>
+            </div>
+
+            <div class="command-item">
+                <h4>chmod - Change File Permissions</h4>
+                <p>Modify file access permissions</p>
+                <code>chmod 755 script.sh</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">7=rwx, 5=r-x (owner, group, others)</p>
+            </div>
+
+            <div class="command-item">
+                <h4>chown - Change File Owner</h4>
+                <p>Change file ownership</p>
+                <code>chown user:group file.txt</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Change both user and group ownership</p>
+            </div>
+
+            <div class="command-item">
+                <h4>tar - Archive Files</h4>
+                <p>Create and extract compressed archives</p>
+                <code>tar -czvf archive.tar.gz /path/to/directory</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-c: create, -z: gzip, -v: verbose, -f: file</p>
+            </div>
+        </div>
+
+        <!-- AdSense -->
+        <div class="ad-space" style="max-width: 728px; height: 90px; margin: 2rem auto;">
+            Google AdSense (728x90) - Insert your ad code here
+        </div>
+
+        <div class="command-section">
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent);">🔐 Privilege Escalation</h3>
+            
+            <div class="command-item">
+                <h4>sudo -l - List Sudo Privileges</h4>
+                <p>Check what commands current user can run with sudo</p>
+                <code>sudo -l</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">First command to run when you have user access</p>
+            </div>
+
+            <div class="command-item">
+                <h4>getcap - List Capabilities</h4>
+                <p>Find files with special capabilities set</p>
+                <code>getcap -r / 2>/dev/null</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-r: recursive search from root</p>
+            </div>
+
+            <div class="command-item">
+                <h4>find - SUID/SGID Files</h4>
+                <p>Locate files with SUID or SGID bit set</p>
+                <code>find / -perm -u=s -type f 2>/dev/null</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">SUID files run with owner's privileges</p>
+            </div>
+
+            <div class="command-item">
+                <h4>LinPEAS - Linux Privilege Escalation Script</h4>
+                <p>Automated privilege escalation enumeration</p>
+                <code>curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Comprehensive automated enumeration tool</p>
+            </div>
+
+            <div class="command-item">
+                <h4>id - User Identity</h4>
+                <p>Display current user and group information</p>
+                <code>id</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Shows UID, GID, and group memberships</p>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent);">🌍 Web Pentesting Tools</h3>
+            
+            <div class="command-item">
+                <h4>gobuster - Directory Brute Forcing</h4>
+                <p>Discover hidden directories and files on web servers</p>
+                <code>gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">dir: directory mode, -u: URL, -w: wordlist</p>
+            </div>
+
+            <div class="command-item">
+                <h4>ffuf - Fast Web Fuzzer</h4>
+                <p>High-speed web fuzzing for directories, parameters, and more</p>
+                <code>ffuf -u http://target.com/FUZZ -w wordlist.txt</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">FUZZ keyword gets replaced with wordlist entries</p>
+            </div>
+
+            <div class="command-item">
+                <h4>nikto - Web Server Scanner</h4>
+                <p>Comprehensive web server vulnerability scanner</p>
+                <code>nikto -h http://target.com</code>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">-h: host to scan</p>
+            </div>
+
+            <div class="command-item">
+                <h4>sqlmap - SQL Injection Tool</h4>
+                <p>Automated SQL injection and database takeover tool</p>
+                <code>sqlmap -u "http://target.com/page?id=1"
